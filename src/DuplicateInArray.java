@@ -51,11 +51,31 @@ public class DuplicateInArray {
 
     }
 
+    public static void firstDuplicateElement(int[] a){
+        System.out.println("\t floyd's cycle detection \n");
+
+        int tortoise = a[0];
+        int hare = a[0];
+
+        do{
+            tortoise = a[tortoise];
+            hare = a[ a[hare] ];
+        }while (tortoise != hare);
+
+        tortoise = a[0];
+        while (tortoise != hare){
+            tortoise = a[tortoise];
+            hare = a[hare];
+        }
+
+        System.out.println("first duplicate element is : " + hare);
+    }
 
     public static void main(String[] args) {
         bruteForce(new int[]{1, 1, 3, 4, 5, 6, 6, 9, 3});
         usingSort(new int[]{1, 1, 3, 4, 5, 6, 6, 9, 3});
         withOutSortUsingHashSet(new int[]{1, 1, 3, 4, 5, 6, 6, 9, 3});
         usingCountArray(new int[]{1, 1, 3, 4, 5, 6, 6, 9, 3},9); // 9 is n (max range)
+        firstDuplicateElement(new int[]{1, 1, 3, 4, 5, 6, 6, 9, 3});
     }
 }
